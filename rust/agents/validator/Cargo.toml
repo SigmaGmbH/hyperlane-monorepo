@@ -38,3 +38,4 @@ k256.workspace = true
 default = ["color-eyre", "oneline-errors"]
 oneline-errors = ["hyperlane-base/oneline-errors"]
 color-eyre = ["hyperlane-base/color-eyre"]
+swisstronik = ["hyperlane-core/swisstronik"]

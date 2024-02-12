@@ -168,7 +168,7 @@ where
 impl JsonRpcClient for RetryingProvider<PrometheusJsonRpcClient<Http>> {
     type Error = RetryingProviderError<PrometheusJsonRpcClient<Http>>;
 
-    #[instrument(skip(self), fields(provider_host = %self.inner.node_host(), chain_name = %self.inner.chain_name()))]
+    // #[instrument(skip(self), fields(provider_host = %self.inner.node_host(), chain_name = %self.inner.chain_name()))]
     async fn request<T, R>(&self, method: &str, params: T) -> Result<R, Self::Error>
     where
         T: Debug + Serialize + Send + Sync,
@@ -194,6 +194,10 @@ impl JsonRpcClient for RetryingProvider<PrometheusJsonRpcClient<Http>> {
         })
         .await
     }
+
+    // fn connection(&self) -> String {
+    //     self.inner.connection()
+    // }
 }
 
 impl<P> FromStr for RetryingProvider<P>

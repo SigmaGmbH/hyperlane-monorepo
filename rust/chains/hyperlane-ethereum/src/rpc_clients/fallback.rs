@@ -82,6 +82,13 @@ where
 {
     type Error = ProviderError;
 
+    // fn connection(&self) -> String {
+    //     if self.inner.providers.len() >= 1 {
+    //         self.inner.providers[0].connection()
+    //     } else {
+    //         "".to_string()
+    //     }
+    // }
     // TODO: Refactor the reusable parts of this function when implementing the cosmos-specific logic
     #[instrument]
     async fn request<T, R>(&self, method: &str, params: T) -> Result<R, Self::Error>

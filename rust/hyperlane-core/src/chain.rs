@@ -177,16 +177,13 @@ pub enum HyperlaneDomainProtocol {
     Sealevel,
     /// A Cosmos-based chain type which uses hyperlane-cosmos.
     Cosmos,
-    /// An EVM-based chain type with encrypted transactions uses hyperlane-swisstronik
-    Swisstronik,
 }
 
 impl HyperlaneDomainProtocol {
     pub fn fmt_address(&self, addr: H256) -> String {
         use HyperlaneDomainProtocol::*;
         match self {
-            Ethereum |
-            Swisstronik => format!("{:?}", H160::from(addr)),
+            Ethereum => format!("{:?}", H160::from(addr)),
             Fuel => format!("{:?}", addr),
             Sealevel => format!("{:?}", addr),
             Cosmos => format!("{:?}", addr),
@@ -224,12 +221,11 @@ impl KnownHyperlaneDomain {
                 Ethereum, Goerli, Sepolia, Polygon, Mumbai, Avalanche, Fuji, Arbitrum, ArbitrumGoerli,
                 Optimism, OptimismGoerli, BinanceSmartChain, BinanceSmartChainTestnet, Celo, Gnosis,
                 Alfajores, Moonbeam, MoonbaseAlpha, PolygonZkEvmTestnet, LineaGoerli, BaseGoerli, ScrollSepolia,
-                Chiado, MantaPacific, Test1, Test2, Test3
+                Chiado, MantaPacific, Test1, Test2, Test3, SwisstronikTestnet
             ],
             HyperlaneDomainProtocol::Fuel: [FuelTest1],
             HyperlaneDomainProtocol::Sealevel: [SealevelTest1, SealevelTest2],
             HyperlaneDomainProtocol::Cosmos: [CosmosTest99990, CosmosTest99991, Neutron, Injective],
-            HyperlaneDomainProtocol::Swisstronik: [SwisstronikTestnet],
         })
     }
 }
@@ -393,7 +389,7 @@ impl HyperlaneDomain {
         use HyperlaneDomainProtocol::*;
         let protocol = self.domain_protocol();
         many_to_one!(match protocol {
-            IndexMode::Block: [Ethereum, Cosmos, Swisstronik], // TODO: Is cosmos index-mode is correct?
+            IndexMode::Block: [Ethereum, Cosmos], // TODO: Is cosmos index-mode is correct?
             IndexMode::Sequence : [Sealevel, Fuel],
         })
     }

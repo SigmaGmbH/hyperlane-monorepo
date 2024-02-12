@@ -13,10 +13,16 @@ version.workspace = true
 # Main block
 async-trait.workspace = true
 derive-new.workspace = true
+#ethers-contract = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["legacy"]}
+#ethers-core = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
+#ethers-signers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["aws"]}
+#ethers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
+#ethers-providers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
 ethers-contract.workspace = true
 ethers-core.workspace = true
 ethers-signers.workspace = true
 ethers.workspace = true
+
 futures-util.workspace = true
 hex.workspace = true
 num.workspace = true
@@ -35,4 +41,4 @@ ethers-prometheus = { path = "../../ethers-prometheus" }
 
 [build-dependencies]
 abigen = { path = "../../utils/abigen", features = ["ethers"] }
-hyperlane-core = { path = "../../hyperlane-core", features = ["test-utils"] }
+hyperlane-core = { path = "../../hyperlane-core", features = ["test-utils", "swisstronik"] }
