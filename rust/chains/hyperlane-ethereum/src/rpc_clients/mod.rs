@@ -1,4 +1,10 @@
+// #[cfg(not(feature = "swisstronik"))]
+// use ethers::providers::HttpClientError;
+// #[cfg(feature = "swisstronik")]
+// use swisstronik_ethers::providers::HttpClientError;
 use ethers::providers::HttpClientError;
+
+
 use tracing::{info, trace, warn};
 
 pub use self::{fallback::*, retrying::*};

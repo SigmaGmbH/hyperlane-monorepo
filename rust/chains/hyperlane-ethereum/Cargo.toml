@@ -13,15 +13,15 @@ version.workspace = true
 # Main block
 async-trait.workspace = true
 derive-new.workspace = true
-#ethers-contract = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["legacy"]}
-#ethers-core = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
-#ethers-signers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["aws"]}
-#ethers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
-#ethers-providers = {git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = []}
-ethers-contract.workspace = true
-ethers-core.workspace = true
-ethers-signers.workspace = true
-ethers.workspace = true
+swisstronik-ethers-contract = {package = "ethers-contract", git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["legacy"], optional = true}
+swisstronik-ethers-core = {package="ethers-core", git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = [],  optional = true}
+swisstronik-ethers-signers = {package="ethers-signers", git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = ["aws"], optional = true}
+swisstronik-ethers = {package="ethers", git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = [], optional = true}
+swisstronik-ethers-providers = {package="ethers-providers", git = "https://github.com/SigmaGmbH/ethers-rs.git", branch = "publish", features = [], optional = true}
+ethers-contract = {workspace = true, optional = true}
+ethers-core = {workspace = true, optional = true}
+ethers-signers = {workspace = true, optional = true}
+ethers = {workspace = true, optional = true}
 
 futures-util.workspace = true
 hex.workspace = true
@@ -41,4 +41,9 @@ ethers-prometheus = { path = "../../ethers-prometheus" }
 
 [build-dependencies]
 abigen = { path = "../../utils/abigen", features = ["ethers"] }
-hyperlane-core = { path = "../../hyperlane-core", features = ["test-utils", "swisstronik"] }
+hyperlane-core = { path = "../../hyperlane-core", features = ["test-utils"] }
+
+
+[features]
+default = ["dep:ethers-contract", "dep:ethers-core", "dep:ethers-signers", "dep:ethers"]
+swisstronik = ["hyperlane-core/swisstronik","dep:swisstronik-ethers-contract", "dep:swisstronik-ethers-core", "dep:swisstronik-ethers-signers", "dep:swisstronik-ethers" , "dep:swisstronik-ethers-providers"]

@@ -86,6 +86,7 @@ pub enum KnownHyperlaneDomain {
 
     Injective = 6909546,
 
+    #[cfg_attr(feature = "strum", strum(serialize = "swisstronik"))]
     SwisstronikTestnet = 1291,
 
     // -- Local test chains --
